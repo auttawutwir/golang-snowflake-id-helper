@@ -9,13 +9,14 @@ import (
 )
 
 func TestSnowflakeQuery(t *testing.T) {
-	t.Run("Generate Snowflake id before 0 hour.", func(t *testing.T) {
+	t.Run("Generate Snowflake id before 3 hour.", func(t *testing.T) {
 
 		const given = 3
 		const milli = 3600000
+
 		var got = GenerateSnowflakeIdBefore(TimeUnit{hour: given}).Time()
 
-		node, err := snowflake.NewNode(1)
+		node, err := snowflake.NewNode(0)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -37,7 +38,7 @@ func TestSnowflakeQuery(t *testing.T) {
 		SF_ID := GenerateSnowflakeIdBefore(TimeUnit{hour: given})
 		var got = SF_ID.Time()
 
-		node, err := snowflake.NewNode(1)
+		node, err := snowflake.NewNode(0)
 		if err != nil {
 			fmt.Println(err)
 			return

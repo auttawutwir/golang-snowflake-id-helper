@@ -33,7 +33,7 @@ func GenerateSnowflakeIdBefore(timeunit TimeUnit) ID {
 	var epoch = curTime.Add(time.Unix(Epoch/1000, (Epoch%1000)*1000000).Add(time.Hour).Sub(curTime.Add(-time.Duration(timeunit.hour-1) * time.Hour)))
 
 	var now = (time.Since(epoch).Nanoseconds() / 1000000)
-	return ID((now)<<timeShift | 1<<nodeShift | 0)
+	return ID((now)<<timeShift | 0<<nodeShift | 0)
 }
 
 func (i ID) Base2() string {
